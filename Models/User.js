@@ -21,10 +21,10 @@ const UserSchema = new Schema({
     required: true,
     minlength: 6
   },
-  language: { 
+  languages: [{ 
     type: String,
     required: true,
-  },
+  }],
   course: {
     type: String,
     required: true,
