@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const userRoutes = require('./routes/userRoutes');
-const commentRoutes = require('./routes/commentRoutes');
-const eventRoutes = require('./routes/eventRoutes');
-const newsRoutes = require('./routes/newsRoutes');
+const userRoutes = require('./routes/users');
+const commentRoutes = require('./routes/comments');
+const eventRoutes = require('./routes/events');
+const newsRoutes = require('./routes/news');
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
