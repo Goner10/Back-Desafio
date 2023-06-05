@@ -1,88 +1,85 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+require("dotenv").config();
 
-// Registro de usuario
-router.post('/register', async (req, res) => {
-  try {
-    // Chequea si el nombre de usuario ya existe
-    const user = await User.findOne({ username: req.body.username });
-    if (user) return res.status(400).send('El nombre de usuario ya existe');
+const UserController = {
+  async register(req, res) {
+    try {
+      const user = await User.create(req.body);
+      res.status(201).send({ message: "Usuario registrado con éxito", user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ error });
+    }
+  },
 
-    // Cifrado de contraseña
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  async login(req, res) {
+    try {
+      const user = await User.findOne({
+        email: req.body.email,
+      });
+      if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
+        throw new Error();
+      }
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+      if (user.tokens.length > 4) user.tokens.shift();
+      user.tokens.push(token);
+      await user.save();
+      res.send({ message: "Bienvenid@ " + user.name, token });
+    } catch (error) {
+      console.error(error);
+      res.status(401).send({ message: 'Email or password incorrect' });
+    }
+  },
 
-    // Crea nuevo usuario
-    const newUser = new User({
-      username: req.body.username,
-      email: req.body.email,
-      password: hashedPassword,
-      language: req.body.language,
-      course: req.body.course,
-      interests: req.body.interests,
-    });
+  async logout(req, res) {
+    try {
+      req.user.tokens = req.user.tokens.filter((token) => {
+        return token != req.headers.authorization;
+      });
+      await req.user.save();
+      res.send({ message: "Desconectado con éxito" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema al intentar desconectar al usuario" });
+    }
+  },
 
-    // Guarda usuario y devuelve respuesta
-    const savedUser = await newUser.save();
-    res.send({ user: savedUser._id });
+  async getInfo(req, res) {   // Aquí se ha cambiado 'me' por 'getInfo'
+    try {
+      res.send(req.user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Ha habido un problema al obtener la información del usuario",
+      });
+    }
+  },
 
-  } catch (err) {
-    res.status(400).send(err);
+  async update(req, res) {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params._id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.send(updatedUser);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error);
+    }
+  },
+
+  async delete(req, res) {
+    try {
+      const deletedUser = await User.findByIdAndDelete(req.params._id);
+      res.send(deletedUser);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error);
+    }
   }
-});
+};
 
-// Inicio de sesión del usuario
-router.post('/login', async (req, res) => {
-  try {
-    // Chequea si el nombre de usuario existe
-    const user = await User.findOne({ username: req.body.username });
-    if (!user) return res.status(400).send('Nombre de usuario o contraseña incorrectos');
-
-    // Compara la contraseña
-    const validPass = await bcrypt.compare(req.body.password, user.password);
-    if (!validPass) return res.status(400).send('Nombre de usuario o contraseña incorrectos');
-
-    // Retorna éxito
-    res.send('Inicio de sesión exitoso');
-
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-// Obtén el perfil de un usuario
-router.get('/profile/:username', async (req, res) => {
-  try {
-    const user = await User.findOne({ username: req.params.username });
-    if (!user) return res.status(404).send('Usuario no encontrado');
-
-    // En un escenario real, probablemente querrías omitir la contraseña en la respuesta
-    const { password, ...others } = user._doc;
-    res.send(others);
-
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-// Actualiza el perfil de un usuario
-router.put('/profile/:username', async (req, res) => {
-  try {
-    // Esta es solo una actualización básica, puedes agregar más validación y funcionalidad
-    const user = await User.findOneAndUpdate(
-      { username: req.params.username },
-      req.body,
-      { new: true }
-    );
-    if (!user) return res.status(404).send('Usuario no encontrado');
-
-    res.send('Perfil actualizado');
-
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-module.exports = router;
+module.exports = UserController;

@@ -1,6 +1,6 @@
 const express = require('express');
 const NewsController = require('../controllers/NewsController');
-const { authentication } = require('../middlewares/authentication');
+const { authentication } = require('../middleware/authentication');
 
 const router = express.Router();
 
