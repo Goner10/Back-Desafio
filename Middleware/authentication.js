@@ -1,6 +1,5 @@
-const User = require("../Models/User");
-const Post = require("../models/Post");
-const Event = require("../models/Event");
+const User = require("../models/User");
+// const Event = require("../models/Event");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
 
