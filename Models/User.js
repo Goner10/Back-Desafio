@@ -23,11 +23,11 @@ const UserSchema = new Schema({
   },
   languages: [{ 
     type: String,
-    required: true,
+    required: false,
   }],
   course: {
     type: String,
-    required: true,
+    required: false,
   },
   interests: [{
     type: String,
