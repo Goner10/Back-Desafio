@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const EventSchema = new mongoose.Schema({
     name: {
@@ -10,7 +11,10 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
+    createdBy:{
+        type: ObjectId, ref: "User",
+        required:true,
+    },
     date: {
         type: Date,
         required: true,

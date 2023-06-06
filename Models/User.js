@@ -21,6 +21,11 @@ const UserSchema = new Schema({
     required: true,
     minlength: 6
   },
+  //Edem,alumno,profesor,para poder mostrar 
+  typeUser:{
+    type:String,
+    require:true,
+  },
   languages: [{ 
     type: String,
     required: false,
