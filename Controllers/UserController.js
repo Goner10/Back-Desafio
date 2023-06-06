@@ -18,10 +18,9 @@ const UserController = {
 
   async login(req, res) {
     try {
-      const user = await User.findOne({
-        name: req.body.name,
-      });
-      if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
+      if (!user || !(await bcrypt.compare(password, user.password))) {
         throw new Error();
       }
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
@@ -33,7 +32,7 @@ const UserController = {
       res.send({ message: "Bienvenid@ " + user.name, token });
     } catch (error) {
       console.error(error);
-      res.status(401).send({ message: 'User or password incorrect' });
+      res.status(401).send({ message: 'Email or password incorrect' });
     }
   },
 
