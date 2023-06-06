@@ -17,7 +17,7 @@ const UserController = {
   async login(req, res) {
     try {
       const user = await User.findOne({
-        email: req.body.email,
+        name: req.body.name,
       });
       if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
         throw new Error();
@@ -46,7 +46,7 @@ const UserController = {
     }
   },
 
-  async getInfo(req, res) {   // Aquí se ha cambiado 'me' por 'getInfo'
+  async getInfo(req, res) {
     try {
       res.send(req.user);
     } catch (error) {

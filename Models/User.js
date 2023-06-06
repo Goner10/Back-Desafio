@@ -3,11 +3,11 @@ const { Schema } = mongoose;
 
 // Crea un nuevo Schema para User
 const UserSchema = new Schema({
-  username: {
+  name: {
     type: String,
     required: true,
     unique: true,
-    trim: true, 
+    trim: true,
     minlength: 3
   },
   email: {
