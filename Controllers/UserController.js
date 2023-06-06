@@ -8,7 +8,7 @@ const UserController = {
     try {
       const { name, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ name, email, password: hashedPassword });
+      const user = await User.create({ username: name, email, password: hashedPassword });
       res.status(201).send({ message: "Usuario registrado con éxito", user });
     } catch (error) {
       console.error(error);
@@ -19,7 +19,7 @@ const UserController = {
   async login(req, res) {
     try {
       const user = await User.findOne({
-        name: req.body.name,
+        username: req.body.name,
       });
       if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
         throw new Error();
@@ -30,7 +30,7 @@ const UserController = {
       }
       user.tokens.push(token);
       await user.save();
-      res.send({ message: "Bienvenid@ " + user.name, token });
+      res.send({ message: "Bienvenid@ " + user.username, token });
     } catch (error) {
       console.error(error);
       res.status(401).send({ message: 'User or password incorrect' });
