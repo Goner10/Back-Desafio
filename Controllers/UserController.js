@@ -6,7 +6,9 @@ require("dotenv").config();
 const UserController = {
   async register(req, res) {
     try {
-      const user = await User.create(req.body);
+      const { name, email, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({ name, email, password: hashedPassword });
       res.status(201).send({ message: "Usuario registrado con éxito", user });
     } catch (error) {
       console.error(error);
@@ -23,13 +25,15 @@ const UserController = {
         throw new Error();
       }
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-      if (user.tokens.length > 4) user.tokens.shift();
+      if (user.tokens && user.tokens.length > 4) {
+        user.tokens.shift();
+      }
       user.tokens.push(token);
       await user.save();
       res.send({ message: "Bienvenid@ " + user.name, token });
     } catch (error) {
       console.error(error);
-      res.status(401).send({ message: 'Email or password incorrect' });
+      res.status(401).send({ message: 'User or password incorrect' });
     }
   },
 
