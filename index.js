@@ -9,7 +9,6 @@ const { authentication } = require("./middleware/authentication");
 
 app.use(express.json());
 
-app.use(authentication);  // Si es requerido en todas las rutas.
 
 dbConnection();
 
@@ -18,6 +17,7 @@ app.use('/comments', require('./routes/comments'));
 app.use('/events', require('./routes/events'));
 app.use('/news', require('./routes/news'));
 
+app.use(authentication);
 app.use(handleErrorType); 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
