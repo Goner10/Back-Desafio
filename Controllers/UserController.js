@@ -8,7 +8,7 @@ const UserController = {
     try {
       const { name, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ name: name, email, password: hashedPassword });
+      const user = await User.create({ name, email, password: hashedPassword });
       res.status(201).send({ message: "Usuario registrado con éxito", user });
     } catch (error) {
       console.error(error);

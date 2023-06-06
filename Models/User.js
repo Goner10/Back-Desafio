@@ -37,6 +37,7 @@ const UserSchema = new Schema({
   interests: [{
     type: String,
   }],
+  tokens: [],
   dateCreated: {
     type: Date,
     default: Date.now
