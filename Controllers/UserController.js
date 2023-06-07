@@ -52,14 +52,13 @@ const UserController = {
     }
   },
 
-  async getInfo(req, res) {
+  async getInfo(req, res, next) {
     try {
-      res.send(req.user);
+      const user = await User.findById(req.user._id);
+      res.send(user);
     } catch (error) {
       console.error(error);
-      res.status(500).send({
-        message: "Ha habido un problema al obtener la información del usuario",
-      });
+      next(error); // Pasar el error al siguiente middleware o controlador de errores
     }
   },
 
