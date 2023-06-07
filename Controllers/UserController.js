@@ -61,7 +61,15 @@ const UserController = {
       next(error); // Pasar el error al siguiente middleware o controlador de errores
     }
   },
-
+  async userInfoById(req, res, next) {
+    try {
+      const user = await User.findOne(req.params._id);
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+      next(error); // Pasar el error al siguiente middleware o controlador de errores
+    }
+  },
   async getAll(req, res) {
     try {
       const users = await User.find();
