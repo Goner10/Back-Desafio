@@ -62,6 +62,16 @@ const UserController = {
     }
   },
 
+  async getAll(req, res) {
+    try {
+      const users = await User.find();
+      res.send({ message: "Usuarios mostrados con éxito", users });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema al obtener los usuarios" });
+    }
+  },
+  
   async update(req, res) {
     try {
       const updatedUser = await User.findByIdAndUpdate(
