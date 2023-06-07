@@ -46,19 +46,30 @@ const isSuperAdmin = async (req, res, next) => {
   next();
 };
 // cambiar CanalDifusion por events
-const isCanDifCreator = async (req, res, next) => {
-  try {
-    const candif = await CanalDifusion.findById(req.params._id);
-    if (candif.userId.toString() !== req.user._id.toString()) {
-      return res.status(403).send({ message: 'Este canal de difusion no es tuyo' });
-    }
-    next();
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send({ error, message: 'Ha habido un problema al comprobar la autoría del canal de difusion' });
+// const isCanDifCreator = async (req, res, next) => {
+//   try {
+//     const candif = await CanalDifusion.findById(req.params._id);
+//     if (candif.userId.toString() !== req.user._id.toString()) {
+//       return res.status(403).send({ message: 'Este canal de difusion no es tuyo' });
+//     }
+//     next();
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).send({ error, message: 'Ha habido un problema al comprobar la autoría del canal de difusion' });
+//   }
+// };
+const modCanDif = async (req,res,next)=>{
+ try {
+  const modCanDif = await CanalDifusion.findById(req.params._id);
+  if ((modCanDif.createdBy.toString()!==req.user._id.toString())||(req.user.role!=='superadmin')) {
+    return res.status(403).send({ message: 'Este canal de difusion no es tuyo' });
   }
+  next();
+ } catch (error) {
+  console.error(error);
+  return res.status(500).send({ error, message: 'Ha habido un problema al comprobar la autoría del canal de difusion' });
+ }
 };
-
 const isEventCreator = async (req, res, next) => {
   try {
     const event = await Event.findById(req.params._id);
@@ -72,4 +83,4 @@ const isEventCreator = async (req, res, next) => {
   }
 };
 
-module.exports = { authentication, isAdmin, isCanDifCreator, isEventCreator,isSuperAdmin };
+module.exports = { authentication, isAdmin, isEventCreator,isSuperAdmin,modCanDif };

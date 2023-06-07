@@ -9,6 +9,9 @@ const UserController = {
       const { name, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({ name, email, password: hashedPassword });
+      if (req.body.role) {
+        user.role = req.body.role;
+      }
       res.status(201).send({ message: "Usuario registrado con éxito", user });
     } catch (error) {
       console.error(error);
@@ -49,17 +52,26 @@ const UserController = {
     }
   },
 
-  async getInfo(req, res) {
+  async getInfo(req, res, next) {
     try {
-      res.send(req.user);
+      const user = await User.findById(req.user._id);
+      res.send(user);
     } catch (error) {
       console.error(error);
-      res.status(500).send({
-        message: "Ha habido un problema al obtener la información del usuario",
-      });
+      next(error); // Pasar el error al siguiente middleware o controlador de errores
     }
   },
 
+  async getAll(req, res) {
+    try {
+      const users = await User.find();
+      res.send({ message: "Usuarios mostrados con éxito", users });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema al obtener los usuarios" });
+    }
+  },
+  
   async update(req, res) {
     try {
       const updatedUser = await User.findByIdAndUpdate(
