@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
 // Crea un nuevo Schema para User
 const UserSchema = new Schema({
   name: {
@@ -33,8 +34,13 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
-  startDate:{},//añadir por input
-  endDate:{},//añadir por input
+  startDate:{
+    type:String,
+    required:true,
+  },//añadir por input
+  endDate:{
+
+  },//añadir por input
   localization:{},
   interests: [{
     type: String,
@@ -47,7 +53,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-
+  //no se si habria que añadir algo rollo eventos donde ha confirmado asistencia
   gender:{
   type: String,
   required: false

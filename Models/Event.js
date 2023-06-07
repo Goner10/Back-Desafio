@@ -19,7 +19,18 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-
+    startDate:{
+        type:String,
+        required:true,
+      },//añadir por input
+      endDate:{
+        type:String,
+        required:true,
+      },//añadir por input
+      localization:{
+        type:String,
+        required:true,
+      },
     attendees: [{
         type: ObjectId,
         ref: 'User',
