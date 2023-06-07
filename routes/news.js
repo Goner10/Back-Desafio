@@ -7,8 +7,8 @@ const router = express.Router();
 router.post('/create', authentication, NewsController.create);
 router.get('/all', NewsController.getAll);
 router.get('/latest', NewsController.getLatest);
-router.get('/:_id', NewsController.getById);
-router.put('/update/:_id', authentication, NewsController.update);
-router.delete('/delete/:_id', authentication, NewsController.delete);
+router.get('/:id', NewsController.getById);
+router.put('/update/:id', authentication, NewsController.update);
+router.delete('/delete/:id', authentication, NewsController.delete);
 
 module.exports = router;
