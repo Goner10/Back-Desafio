@@ -15,7 +15,11 @@ const CanalDifSchema = new mongoose.Schema({
     participantes:[{
         type:ObjectId,
         ref:'User'
-    }]
+    }],
+    createdBy:{
+        type:ObjectId,
+        ref:'User'
+    }
 });
 
 const CanalDifusion = mongoose.model('CanalDifusion', CanalDifSchema);
