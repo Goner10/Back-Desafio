@@ -1,4 +1,4 @@
-const CanalDifusion = require("../Models/CanalDifusion");
+const CanalDifusion = require("../models/CanalDifusion");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -28,8 +28,17 @@ const authentication = async (req, res, next) => {
 };
 //wiki lo de superadmin
 const isAdmin = async (req, res, next) => {
-  const admins = ['admin', 'superadmin'];
-  if (!admins.includes(req.user.role)) {
+  const admin = 'admin';
+  if (!admin.includes(req.user.role)) {
+    return res.status(403).send({
+      message: 'No tienes permiso',
+    });
+  }
+  next();
+};
+const isSuperAdmin = async (req, res, next) => {
+  const superadmin = 'superadmin';
+  if (!superadmin.includes(req.user.role)) {
     return res.status(403).send({
       message: 'No tienes permiso',
     });
@@ -63,4 +72,4 @@ const isEventCreator = async (req, res, next) => {
   }
 };
 
-module.exports = { authentication, isAdmin, isCanDifCreator, isEventCreator };
+module.exports = { authentication, isAdmin, isCanDifCreator, isEventCreator,isSuperAdmin };
