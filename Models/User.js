@@ -51,6 +51,11 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
+
+  gender:{
+  type: String,
+  required: false
+}
 });
 
 // Compila el Schema en un modelo y lo exporta
