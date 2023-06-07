@@ -1,3 +1,4 @@
+const CanalDifusion = require("../models/CanalDifusion");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -27,25 +28,34 @@ const authentication = async (req, res, next) => {
 };
 //wiki lo de superadmin
 const isAdmin = async (req, res, next) => {
-  const admins = ['admin', 'superadmin'];
-  if (!admins.includes(req.user.role)) {
+  const admin = 'admin';
+  if (!admin.includes(req.user.role)) {
     return res.status(403).send({
       message: 'No tienes permiso',
     });
   }
   next();
 };
-// cambiar post por events
-const isAuthor = async (req, res, next) => {
+const isSuperAdmin = async (req, res, next) => {
+  const superadmin = 'superadmin';
+  if (!superadmin.includes(req.user.role)) {
+    return res.status(403).send({
+      message: 'No tienes permiso',
+    });
+  }
+  next();
+};
+// cambiar CanalDifusion por events
+const isCanDifCreator = async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params._id);
-    if (post.userId.toString() !== req.user._id.toString()) {
-      return res.status(403).send({ message: 'Este post no es tuyo' });
+    const candif = await CanalDifusion.findById(req.params._id);
+    if (candif.userId.toString() !== req.user._id.toString()) {
+      return res.status(403).send({ message: 'Este canal de difusion no es tuyo' });
     }
     next();
   } catch (error) {
     console.error(error);
-    return res.status(500).send({ error, message: 'Ha habido un problema al comprobar la autoría del post' });
+    return res.status(500).send({ error, message: 'Ha habido un problema al comprobar la autoría del canal de difusion' });
   }
 };
 
@@ -62,4 +72,4 @@ const isEventCreator = async (req, res, next) => {
   }
 };
 
-module.exports = { authentication, isAdmin, isAuthor, isEventCreator };
+module.exports = { authentication, isAdmin, isCanDifCreator, isEventCreator,isSuperAdmin };

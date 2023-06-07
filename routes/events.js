@@ -1,10 +1,11 @@
 const express = require('express');
 const EventController = require('../controllers/EventController');
-const { authentication } = require('../middleware/authentication');
+const { authentication,isEventCreator } = require('../middleware/authentication');
 
 const router = express.Router();
 
-router.post('/create', authentication, EventController.create);
+router.post('/create', authentication,isEventCreator,EventController.create);
+// router.post('/create', authentication,isAdmin,iscandifCreator,canaldifController.create);
 router.get('/all', EventController.getAll);
 router.get('/:_id', EventController.getById);
 router.put('/update/:_id', authentication, EventController.update);
