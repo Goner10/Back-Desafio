@@ -32,7 +32,7 @@ const UserController = {
       }
       user.tokens.push(token);
       await user.save();
-      res.send({ message: "Bienvenid@ " + user.name, token });
+      res.send({ message: "Bienvenid@ " + user.name, token ,user});
     } catch (error) {
       console.error(error);
       res.status(401).send({ message: 'Email or password incorrect' });
