@@ -58,7 +58,7 @@ const UserController = {
       res.send(user);
     } catch (error) {
       console.error(error);
-      next(error); // Pasar el error al siguiente middleware o controlador de errores
+ // Pasar el error al siguiente middleware o controlador de errores
     }
   },
 
