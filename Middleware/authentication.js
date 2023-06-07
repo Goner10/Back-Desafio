@@ -25,7 +25,7 @@ const authentication = async (req, res, next) => {
       .send({ error, message: "Ha habido un problema con el token" });
   }
 };
-
+//wiki lo de superadmin
 const isAdmin = async (req, res, next) => {
   const admins = ['admin', 'superadmin'];
   if (!admins.includes(req.user.role)) {
@@ -35,7 +35,7 @@ const isAdmin = async (req, res, next) => {
   }
   next();
 };
-
+// cambiar post por events
 const isAuthor = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);

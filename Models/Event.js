@@ -21,7 +21,7 @@ const EventSchema = new mongoose.Schema({
     },
 
     attendees: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'User',
     }],
 

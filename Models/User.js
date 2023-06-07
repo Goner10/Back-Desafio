@@ -33,7 +33,9 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
-
+  startDate:{},//añadir por input
+  endDate:{},//añadir por input
+  localization:{},
   interests: [{
     type: String,
   }],
