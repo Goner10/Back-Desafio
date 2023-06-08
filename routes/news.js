@@ -12,3 +12,4 @@ router.put('/update/:id', authentication, NewsController.update);
 router.delete('/delete/:id', authentication, NewsController.delete);
 
 module.exports = router;
+ 
