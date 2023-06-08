@@ -5,7 +5,7 @@ const canalDifusionController = {
   async create(req, res) {
     try {
       const canalDifusion = await CanalDifusion.create(req.body);
-      res.status(201).send(canalDifusion);
+      res.status(201).send({msessage:'canal creado con exito',canalDifusion});
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: 'Hubo un problema al crear el canal de difusión' });
