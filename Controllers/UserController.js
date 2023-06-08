@@ -6,9 +6,9 @@ require("dotenv").config();
 const UserController = {
   async register(req, res) {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password,imageURL } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ name, email, password: hashedPassword });
+      const user = await User.create({ name, email, password: hashedPassword, imageURL });
       if (req.body.role) {
         user.role = req.body.role;
       }
