@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.SchemaTypes.ObjectId;
+
 const { Schema } = mongoose;
 
 
@@ -52,6 +54,12 @@ const UserSchema = new Schema({
   gender:{
   type: String,
   required: false
+},
+eventsConfi:[{
+type: ObjectId
+}],
+imageURL: {
+  type:String
 }
 });
 

@@ -29,7 +29,7 @@ const EventSchema = new mongoose.Schema({
       },//añadir por input
       localization:{
         type:String,
-        required:true,
+        required:false,
       },
     attendees: [{
         type: ObjectId,
