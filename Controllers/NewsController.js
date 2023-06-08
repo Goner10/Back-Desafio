@@ -21,7 +21,7 @@ const NewsController = {
     },
     async getById(req, res) {
         try {
-            const news = await News.findById(req.params._id);
+            const news = await News.findOne(req.params._id);
             res.send(news);
         } catch (error) {
             console.error(error);
