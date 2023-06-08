@@ -35,10 +35,12 @@ const UserSchema = new Schema({
     required: false,
   },
 
-  interests: [{
+  cosasqueaporto: [{
     type: String,
   }],
-
+  cosasquebusco:[{
+    type: String,
+  }],
   role: { type: String, default: "user" },
   
   tokens: [],
