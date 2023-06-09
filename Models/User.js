@@ -61,6 +61,10 @@ const UserSchema = new Schema({
   }],
   imageURL: {
     type: String
+  },
+  FirstOnBoard: {
+    type: Boolean,
+    default: false
   }
 });
 
