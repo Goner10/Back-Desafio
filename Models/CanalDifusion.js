@@ -21,7 +21,7 @@ const CanalDifSchema = new mongoose.Schema({
         ref: 'User'
     },
     oficial: {
-        Boolean,
+        type: Boolean,
         default: false
       }
 });

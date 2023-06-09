@@ -62,7 +62,7 @@ const UserSchema = new Schema({
   imageURL: {
     type: String
   },
-  FirstOnBoard: {
+  firstOnBoard: {
     type: Boolean,
     default: false
   }
