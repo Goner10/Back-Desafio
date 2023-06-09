@@ -64,7 +64,7 @@ const UserSchema = new Schema({
   },
   firstOnBoard: {
     type: Boolean,
-    default: false
+    default: true
   }
 });
 
