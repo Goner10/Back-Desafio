@@ -65,6 +65,12 @@ const UserSchema = new Schema({
   firstOnBoard: {
     type: Boolean,
     default: true
+  },
+  iGot: {
+    type: String,
+  },
+  iNeed: {
+    type: String
   }
 });
 
