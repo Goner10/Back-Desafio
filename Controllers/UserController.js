@@ -83,7 +83,7 @@ const UserController = {
   async update(req, res) {
     try {
       const updatedUser = await User.findByIdAndUpdate(
-        req.params._id,
+        req.user._id,
         { $set: req.body },
         { new: true }
       );

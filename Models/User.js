@@ -43,24 +43,37 @@ const UserSchema = new Schema({
   cosasquebusco:[{
     type: String,
   }],
+<<<<<<< HEAD
   role: { type: String, default: "user" },
   
+=======
+
+  role: {
+    type: String,
+    default: "user"
+  },
+
+>>>>>>> develop
   tokens: [],
   dateCreated: {
     type: Date,
     default: Date.now
   },
   //no se si habria que añadir algo rollo eventos donde ha confirmado asistencia
-  gender:{
-  type: String,
-  required: false
-},
-eventsConfi:[{
-type: ObjectId
-}],
-imageURL: {
-  type:String
-}
+  gender: {
+    type: String,
+    required: false
+  },
+  eventsConfi: [{
+    type: ObjectId
+  }],
+  imageURL: {
+    type: String
+  },
+  firstOnBoard: {
+    type: Boolean,
+    default: true
+  }
 });
 
 // Compila el Schema en un modelo y lo exporta
