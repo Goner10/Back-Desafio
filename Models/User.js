@@ -41,24 +41,27 @@ const UserSchema = new Schema({
     type: String,
   }],
 
-  role: { type: String, default: "user" },
-  
+  role: {
+    type: String,
+    default: "user"
+  },
+
   tokens: [],
   dateCreated: {
     type: Date,
     default: Date.now
   },
   //no se si habria que añadir algo rollo eventos donde ha confirmado asistencia
-  gender:{
-  type: String,
-  required: false
-},
-eventsConfi:[{
-type: ObjectId
-}],
-imageURL: {
-  type:String
-}
+  gender: {
+    type: String,
+    required: false
+  },
+  eventsConfi: [{
+    type: ObjectId
+  }],
+  imageURL: {
+    type: String
+  }
 });
 
 // Compila el Schema en un modelo y lo exporta
