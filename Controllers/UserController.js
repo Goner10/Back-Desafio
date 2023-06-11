@@ -102,6 +102,20 @@ const UserController = {
       console.error(error);
       res.status(500).send(error);
     }
+  },
+  async updateFirstOnBoard(req, res) {
+    try {
+      const { firstOnBoard } = req.body;
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        { $set: { firstOnBoard } },
+        { new: true }
+      );
+      res.send(updatedUser);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error);
+    }
   }
 };
 
