@@ -31,10 +31,22 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   }],
-
+  birth_date: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  
   course: {
     type: String,
-    required: false,
+    required: true,
+  },
+  situation: {
+    type: String,
+    required: true,
   },
   role: {
     type: String,
