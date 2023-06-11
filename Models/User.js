@@ -61,10 +61,14 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true
   },
+  interests:[{
+    type:String
+  }],
   iGot: [{
     type: ObjectId,
     path:'Tag'
   }],
+
   iNeed: [{
     type: ObjectId,
     path:'Tag'
