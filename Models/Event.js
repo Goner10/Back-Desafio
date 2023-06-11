@@ -17,7 +17,7 @@ const EventSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true,
+        default: Date.now,
     },
     startDate:{
         type:String,
@@ -36,10 +36,10 @@ const EventSchema = new mongoose.Schema({
         ref: 'User',
     }],
 
-    interest: {
-        type: String,
-        required: true,
-    },
+    // interest: {
+    //     type: String,
+    //     required: true,
+    // },
 
     imageUrl: {
         type: String,

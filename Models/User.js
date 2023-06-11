@@ -36,14 +36,6 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
-
-  cosasqueaporto: [{
-    type: String,
-  }],
-  cosasquebusco:[{
-    type: String,
-  }],
-
   role: {
     type: String,
     default: "user"
@@ -62,19 +54,21 @@ const UserSchema = new Schema({
   eventsConfi: [{
     type: ObjectId
   }],
-  imageURL: {
+  imageUrl: {
     type: String
   },
   firstOnBoard: {
     type: Boolean,
     default: true
   },
-  iGot: {
-    type: String,
-  },
-  iNeed: {
-    type: String
-  }
+  iGot: [{
+    type: ObjectId,
+    path:'Tag'
+  }],
+  iNeed: [{
+    type: ObjectId,
+    path:'Tag'
+  }]
 });
 
 // Compila el Schema en un modelo y lo exporta
