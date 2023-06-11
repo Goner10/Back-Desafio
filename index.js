@@ -17,6 +17,7 @@ app.use('/users', require('./routes/users'));
 app.use('/comments', require('./routes/comments'));
 app.use('/events', require('./routes/events'));
 app.use('/news', require('./routes/news'));
+app.use('/tags', require('./routes/tags'));
 
 app.use(authentication);
 app.use(handleErrorType); 
