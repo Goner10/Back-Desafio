@@ -43,17 +43,12 @@ const UserSchema = new Schema({
   cosasquebusco:[{
     type: String,
   }],
-<<<<<<< HEAD
-  role: { type: String, default: "user" },
-  
-=======
 
   role: {
     type: String,
     default: "user"
   },
 
->>>>>>> develop
   tokens: [],
   dateCreated: {
     type: Date,
