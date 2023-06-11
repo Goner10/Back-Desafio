@@ -49,7 +49,11 @@ const EventSchema = new mongoose.Schema({
         {
             type: String,
         }
-    ]
+    ],
+    oficial: {
+        type: Boolean,
+        default: false
+      }
     
 });
 

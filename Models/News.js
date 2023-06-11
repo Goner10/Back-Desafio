@@ -15,11 +15,16 @@ const NewsSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-        required: false,
+        required: true,
     },
-    tags:{ 
-        type: String
-    }
+    tags:[{
+        type: String,
+        required:true
+    }],
+    oficial: {
+        type: Boolean,
+        default: false
+      }
 });
 
 const News = mongoose.model('News', NewsSchema);
