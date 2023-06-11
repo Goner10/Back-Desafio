@@ -62,7 +62,8 @@ const UserSchema = new Schema({
     default: true
   },
   interests:[{
-    type:String
+    type:ObjectId,
+    path:'Tag'
   }],
   iGot: [{
     type: ObjectId,
