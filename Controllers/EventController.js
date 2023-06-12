@@ -53,8 +53,8 @@ const EventController = {
     },
     async attend(req, res) {
         try {
-            const event = await Event.findById(req.params._id);
-            event.attendees.push(req.user._id);
+            const event = await Event.findById(req.params.id);
+            event.attendees.push(req.user.id);
             await event.save();
             res.send(event);
         } catch (error) {

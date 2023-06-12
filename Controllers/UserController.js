@@ -84,6 +84,7 @@ const UserController = {
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
+        //no se si pone el _ antes del id aqui pq no es params
         { $set: req.body },
         { new: true }
       );
