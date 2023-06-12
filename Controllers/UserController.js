@@ -63,7 +63,7 @@ const UserController = {
   },
   async userInfoById(req, res, next) {
     try {
-      const user = await User.findOne(req.params._id);
+      const user = await User.findById(req.params._id);
       res.send(user);
     } catch (error) {
       console.error(error);

@@ -24,7 +24,7 @@ const EventController = {
     ,
     async getById(req, res) {
         try {
-            const event = await Event.findOne(req.params._id).populate({ 
+            const event = await Event.findById(req.params._id).populate({ 
                 path: 'attendees'
              });
             res.send(event);

@@ -13,7 +13,7 @@ const NewsController = {
     async getAll(req, res) {
         try {
             const news = await News.find().sort({date: -1});
-            res.send(news);
+            res.status(201).send(news);
         } catch (error) {
             console.error(error);
             res.status(500).send({message: 'Hubo un problema al tratar de obtener las noticias'});
@@ -21,7 +21,7 @@ const NewsController = {
     },
     async getById(req, res) {
         try {
-            const news = await News.findOne(req.params._id);
+            const news = await News.findById(req.params._id);
             res.send(news);
         } catch (error) {
             console.error(error);

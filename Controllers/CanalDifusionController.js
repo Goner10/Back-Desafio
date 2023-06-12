@@ -26,7 +26,7 @@ const canalDifusionController = {
   // Obtener un canal de difusión por ID
   async getById(req, res) {
     try {
-      const canalDifusion = await CanalDifusion.findOne(req.params._id);
+      const canalDifusion = await CanalDifusion.findById(req.params._id);
       if (!canalDifusion) {
         return res.status(404).send({ message: 'No se encontró el canal de difusión' });
       }

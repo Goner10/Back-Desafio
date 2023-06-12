@@ -5,8 +5,6 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
 const { dbConnection } = require("./config/config");
-const { handleErrorType } = require("./middleware/errors");
-const { authentication } = require("./middleware/authentication");
 
 app.use(cors())
 app.use(express.json());
@@ -19,8 +17,5 @@ app.use('/comments', require('./routes/comments'));
 app.use('/events', require('./routes/events'));
 app.use('/news', require('./routes/news'));
 app.use('/tags', require('./routes/tags'));
-
-app.use(authentication);
-app.use(handleErrorType); 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
