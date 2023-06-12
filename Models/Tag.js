@@ -8,6 +8,10 @@ const TagSchema = new mongoose.Schema({
   profesional:{
     type:Boolean,
     default:false
+  },
+  course:{
+    type:String,
+    required:false
   }
 });
 

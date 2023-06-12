@@ -33,8 +33,12 @@ const UserSchema = new Schema({
   }],
 
   course: {
-    type: String,
+    type:ObjectId,
+    path:'Tag',
     required: false,
+  },
+  courseYear:{
+type:String
   },
   role: {
     type: String,
