@@ -30,7 +30,7 @@ const NewsController = {
     },
     async update(req, res) {
         try {
-            const news = await News.findByIdAndUpdate(req.params._id, req.body, {new: true});
+            const news = await News.findByIdAndUpdate(req.params._id, ...req.body, {new: true});
             res.send(news);
         } catch (error) {
             console.error(error);

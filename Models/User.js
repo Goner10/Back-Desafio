@@ -31,14 +31,26 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   }],
+  birth_date: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
 
   course: {
-    type:ObjectId,
-    path:'Tag',
+    type: ObjectId,
+    path: 'Tag',
     required: false,
   },
-  courseYear:{
-type:String
+  courseYear: {
+    type: String
+  },
+  situationLaboral: {
+    type: String,
+    required: true,
   },
   role: {
     type: String,
@@ -65,18 +77,18 @@ type:String
     type: Boolean,
     default: true
   },
- conocimientos: [{
+  conocimientos: [{
     type: ObjectId,
-    path:'Tag'
+    path: 'Tag'
   }],
 
-  quiero1Aprender: [{
+  quieroAprender: [{
     type: ObjectId,
-    path:'Tag'
+    path: 'Tag'
   }],
-  interests:{
-    type:String,
-    path:'Tag'
+  interests: {
+    type: String,
+    path: 'Tag'
   }
 });
 
