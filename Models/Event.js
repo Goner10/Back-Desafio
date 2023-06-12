@@ -47,7 +47,7 @@ const EventSchema = new mongoose.Schema({
     },
     tags:[
         {
-            type: String,
+            type: ObjectId,
         }
     ],
     oficial: {

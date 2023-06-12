@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const ObjectId = mongoose.SchemaTypes.ObjectId;
 const NewsSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -18,7 +18,8 @@ const NewsSchema = new mongoose.Schema({
         required: true,
     },
     tags:[{
-        type: String,
+        type: ObjectId,
+            path:'Tag',
         required:true
     }],
     oficial: {
