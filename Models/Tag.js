@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const ObjectId = mongoose.SchemaTypes.ObjectId;
 const TagSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -9,10 +9,7 @@ const TagSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
-  course:{
-    type:String,
-    required:false
-  }
+  
 });
 
 const Tag = mongoose.model('Tag', TagSchema);

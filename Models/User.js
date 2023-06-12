@@ -42,7 +42,7 @@ const UserSchema = new Schema({
 
   course: {
     type: ObjectId,
-    path: 'Tag',
+    path: 'Course',
     required: false,
   },
   courseYear: {
