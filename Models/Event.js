@@ -35,12 +35,6 @@ const EventSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'User',
     }],
-
-    // interest: {
-    //     type: String,
-    //     required: true,
-    // },
-
     imageUrl: {
         type: String,
         required: false,
@@ -48,6 +42,7 @@ const EventSchema = new mongoose.Schema({
     tags:[
         {
             type: ObjectId,
+            path:'Tag'
         }
     ],
     oficial: {
