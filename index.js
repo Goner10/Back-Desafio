@@ -13,6 +13,7 @@ app.use(express.json());
 
 dbConnection();
 app.use('/canalDifusiones', require('./routes/canalDifusiones'));
+app.use('/course', require('./routes/course'));
 app.use('/users', require('./routes/users'));
 app.use('/comments', require('./routes/comments'));
 app.use('/events', require('./routes/events'));
