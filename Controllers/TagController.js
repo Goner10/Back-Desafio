@@ -15,8 +15,7 @@ const tagController = {
   async getAll(req, res) {
     try {
       const tags = await Tag.find();
-      res.status(201).res.send({ message: 'Tags obtenidos con éxito', tags });
-      console.log(getAll)
+      res.status(201).send({ message: 'Tags obtenidos con éxito', tags });
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: 'Hubo un problema al tratar de obtener los tags' });
