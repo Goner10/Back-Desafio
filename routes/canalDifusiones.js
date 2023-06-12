@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post('/create' ,canalDifusionController.create);
 router.get('/all', canalDifusionController.getAll);
-router.get('/:id', canalDifusionController.getById);
-router.put('/update/:id',authentication,modCanDif ,canalDifusionController.update);
-router.delete('/delete/:id',authentication,modCanDif ,canalDifusionController.delete);
+router.get('/byId/:_id', canalDifusionController.getById);
+router.put('/update/:_id',authentication,modCanDif ,canalDifusionController.update);
+router.delete('/delete/:_id',authentication,modCanDif ,canalDifusionController.delete);
 
 module.exports = router;

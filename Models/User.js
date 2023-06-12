@@ -61,19 +61,19 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true
   },
-  interests:[{
-    type:ObjectId,
-    path:'Tag'
-  }],
-  iGot: [{
+ conocimientos: [{
     type: ObjectId,
     path:'Tag'
   }],
 
-  iNeed: [{
+  quiero1Aprender: [{
     type: ObjectId,
     path:'Tag'
-  }]
+  }],
+  interests:{
+    type:String,
+    path:'Tag'
+  }
 });
 
 // Compila el Schema en un modelo y lo exporta

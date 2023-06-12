@@ -4,6 +4,10 @@ const TagSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
+  },
+  profesional:{
+    type:Boolean,
+    default:false
   }
 });
 

@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const CanalDifSchema = new mongoose.Schema({
     name: {
-        type: String,
-        required: true,
+        type:ObjectId,
+        path:'Tag'
     },
     description: {
         type: String

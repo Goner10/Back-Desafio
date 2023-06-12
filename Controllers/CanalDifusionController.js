@@ -26,7 +26,7 @@ const canalDifusionController = {
   // Obtener un canal de difusión por ID
   async getById(req, res) {
     try {
-      const canalDifusion = await CanalDifusion.findById(req.params.id);
+      const canalDifusion = await CanalDifusion.findOne(req.params._id);
       if (!canalDifusion) {
         return res.status(404).send({ message: 'No se encontró el canal de difusión' });
       }
@@ -40,7 +40,7 @@ const canalDifusionController = {
   // Actualizar un canal de difusión
   async update(req, res) {
     try {
-      const canalDifusion = await CanalDifusion.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const canalDifusion = await CanalDifusion.findByIdAndUpdate(req.params._id, req.body, { new: true });
       if (!canalDifusion) {
         return res.status(404).send({ message: 'No se encontró el canal de difusión' });
       }
@@ -54,7 +54,7 @@ const canalDifusionController = {
   // Eliminar un canal de difusión
   async delete(req, res) {
     try {
-      const canalDifusion = await CanalDifusion.findByIdAndDelete(req.params.id);
+      const canalDifusion = await CanalDifusion.findByIdAndDelete(req.params._id);
       if (!canalDifusion) {
         return res.status(404).send({ message: 'No se encontró el canal de difusión' });
       }
