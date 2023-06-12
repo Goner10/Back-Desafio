@@ -8,7 +8,7 @@ const UserController = {
     try {
       const { name, email, password,imageURL } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ name, email, password: hashedPassword, imageURL });
+      const user = await User.create({ ...req.body ,name, email, password: hashedPassword, imageURL });
       if (req.body.role) {
         user.role = req.body.role;
       }
