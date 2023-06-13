@@ -2,7 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 require("dotenv").config();
-//const { uploadUserImg } = require('../Middleware/upload');
+const { uploadUserImg } = require('../Middleware/upload');
 
 
 const UserController = {
@@ -93,13 +93,23 @@ const UserController = {
   
   async update(req, res) {
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
-        //no se si pone el _ antes del id aqui pq no es params
-        { $set: req.body },
-        { new: true }
-      );
-      res.send(updatedUser);
+      uploadUserImg.single('profileImage')(req, res, async function (err) {
+        if (err) {
+          return res.status(400).send({ message: 'Error al cargar la imagen', error: err });
+        }
+  
+        try {
+          const updatedUser = await User.findByIdAndUpdate(
+            req.user._id,
+            { $set: req.body },
+            { new: true }
+          );
+          res.send(updatedUser);
+        } catch (error) {
+          console.error(error);
+          res.status(500).send(error);
+        }
+      });
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
