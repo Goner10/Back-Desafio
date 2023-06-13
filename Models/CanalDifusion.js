@@ -3,7 +3,7 @@ const ObjectId = mongoose.SchemaTypes.ObjectId;
 const CanalDifSchema = new mongoose.Schema({
     name: {
         type:ObjectId,
-        path:'Tag'
+        ref:'Tag'
     },
     description: {
         type: String

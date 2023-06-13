@@ -11,7 +11,7 @@ const TagSchema = new mongoose.Schema({
     },
     alumnos: [{
         type: ObjectId,
-        path: 'User'
+        ref: 'User'
     }],
 });
 

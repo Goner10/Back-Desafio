@@ -28,7 +28,7 @@ const tagController = {
       if (!tag) {
         return res.status(404).send({ message: 'Tag no encontrado' });
       }
-      res.status(201).res.send({message:'Tag encontrada con exito',tag})
+      res.status(201).send({message:'Tag encontrada con exito',tag})
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: 'Hubo un problema al tratar de obtener el tag' });

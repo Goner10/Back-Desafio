@@ -54,7 +54,10 @@ const UserController = {
 
   async getInfo(req, res, next) {
     try {
-      const user = await User.findById(req.user._id);
+      const user = await User.findById(req.user._id).populate({ path: 'course'})
+      .populate({ path: 'conocimientos'})
+      .populate({ path: 'quieroAprender'})
+      .populate({ path: 'interests'});
       res.send(user);
     } catch (error) {
       console.error(error);
@@ -63,7 +66,10 @@ const UserController = {
   },
   async userInfoById(req, res, next) {
     try {
-      const user = await User.findById(req.params._id);
+      const user = await User.findById(req.params._id).populate({ path: 'course'})
+      .populate({ path: 'conocimientos'})
+      .populate({ path: 'quieroAprender'})
+      .populate({ path: 'interests'});
       res.send(user);
     } catch (error) {
       console.error(error);
@@ -72,7 +78,10 @@ const UserController = {
   },
   async getAll(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find().populate({ path: 'course'})
+      .populate({ path: 'conocimientos'})
+      .populate({ path: 'quieroAprender'})
+      .populate({ path: 'interests'});
       res.send({ message: "Usuarios mostrados con éxito", users });
     } catch (error) {
       console.error(error);

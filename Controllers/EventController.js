@@ -12,9 +12,10 @@ const EventController = {
     },
     async getAll(req, res) {
         try {
-            const events = await Event.find().populate({ 
-                path: 'attendees'
-            });
+            const events = await Event.find().populate({ path: 'createdBy'})
+            .populate({ path: 'attendees'})
+            .populate({ path: 'tags'})
+            .populate({ path: 'createdBy'});
             res.send(events);
         } catch (error) {
             console.error(error);
@@ -24,9 +25,10 @@ const EventController = {
     ,
     async getById(req, res) {
         try {
-            const event = await Event.findById(req.params._id).populate({ 
-                path: 'attendees'
-             });
+            const event = await Event.findById(req.params._id).populate({ path: 'createdBy'})
+            .populate({ path: 'attendees'})
+            .populate({ path: 'tags'})
+            .populate({ path: 'createdBy'});
             res.send(event);
         } catch (error) {
             console.error(error);

@@ -42,7 +42,7 @@ const EventSchema = new mongoose.Schema({
     tags:[
         {
             type: ObjectId,
-            path:'Tag'
+            ref:'Tag'
         }
     ],
     oficial: {
