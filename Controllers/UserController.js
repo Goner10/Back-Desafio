@@ -2,7 +2,8 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 require("dotenv").config();
-const { uploadUserImg } = require('../Middleware/upload');
+const { uploadUserImg } = require("../Middleware/upload")
+
 
 
 const UserController = {
@@ -93,6 +94,10 @@ const UserController = {
   
   async update(req, res) {
     try {
+      if (!req.user || !req.user._id) {
+        throw new Error('User ID not found');
+      }
+  
       uploadUserImg.single('profileImage')(req, res, async function (err) {
         if (err) {
           return res.status(400).send({ message: 'Error al cargar la imagen', error: err });
@@ -104,7 +109,7 @@ const UserController = {
             { $set: req.body },
             { new: true }
           );
-          res.send(updatedUser);
+          res.send({ message: 'Usuario actualizado correctamente', user: updatedUser });
         } catch (error) {
           console.error(error);
           res.status(500).send(error);
@@ -114,7 +119,7 @@ const UserController = {
       console.error(error);
       res.status(500).send(error);
     }
-  },
+  },  
 
   async delete(req, res) {
     try {

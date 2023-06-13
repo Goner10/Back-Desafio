@@ -18,6 +18,8 @@ const authentication = async (req, res, next) => {
       return res.status(401).send({ message: "No estás autorizado" });
     }
     req.user = user;
+    console.log(req.user);
+    
     next();
   } catch (error) {
     console.error(error);
