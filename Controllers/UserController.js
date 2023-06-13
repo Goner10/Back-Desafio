@@ -2,6 +2,8 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 require("dotenv").config();
+//const { uploadUserImg } = require('../Middleware/upload');
+
 
 const UserController = {
   async register(req, res) {
