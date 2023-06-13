@@ -3,7 +3,7 @@ const Event = require('../models/Event');
 const EventController = {
     async create(req, res) {
         try {
-            const event = await Event.create({ ...req.body });
+            const event = await Event.create(req.body);
             res.status(201).send(event);
         } catch (error) {
             console.error(error);
