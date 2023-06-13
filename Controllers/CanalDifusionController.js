@@ -15,7 +15,10 @@ const canalDifusionController = {
   // Obtener todos los canales de difusión
   async getAll(req, res) {
     try {
-      const canalesDifusion = await CanalDifusion.find();
+      const canalesDifusion = await CanalDifusion.find().populate({ path: 'name'})
+      .populate({ path: 'events'})
+      .populate({ path: 'participantes'})
+      .populate({ path: 'createdBy'});
       res.send(canalesDifusion);
     } catch (error) {
       console.error(error);
@@ -26,7 +29,10 @@ const canalDifusionController = {
   // Obtener un canal de difusión por ID
   async getById(req, res) {
     try {
-      const canalDifusion = await CanalDifusion.findById(req.params._id);
+      const canalDifusion = await CanalDifusion.findById(req.params._id).populate({ path: 'name'})
+      .populate({ path: 'events'})
+      .populate({ path: 'participantes'})
+      .populate({ path: 'createdBy'});;
       if (!canalDifusion) {
         return res.status(404).send({ message: 'No se encontró el canal de difusión' });
       }

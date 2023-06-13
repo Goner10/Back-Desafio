@@ -3,8 +3,6 @@ const ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const { Schema } = mongoose;
 
-
-// Crea un nuevo Schema para User
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -13,20 +11,17 @@ const UserSchema = new Schema({
     trim: true,
     minlength: 3
   },
-
   email: {
     type: String,
     required: true,
     unique: true,
     match: [/.+\@.+\..+/, 'Por favor ingrese un correo electrónico válido']
   },
-
   password: {
     type: String,
     required: true,
     minlength: 6
   },
-
   languages: [{
     type: String,
     required: false,
@@ -39,14 +34,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-
   course: {
     type: ObjectId,
-    path: 'Course',
+    ref: 'Course',
     required: false,
-  },
-  courseYear: {
-    type: String
   },
   situationLaboral: {
     type: String,
@@ -56,13 +47,11 @@ const UserSchema = new Schema({
     type: String,
     default: "user"
   },
-
   tokens: [],
   dateCreated: {
     type: Date,
     default: Date.now
   },
-  //no se si habria que añadir algo rollo eventos donde ha confirmado asistencia
   gender: {
     type: String,
     required: false
@@ -71,7 +60,7 @@ const UserSchema = new Schema({
     type: ObjectId
   }],
   imageUrl: {
-    type: String
+    type: String,
   },
   firstOnBoard: {
     type: Boolean,
@@ -79,19 +68,16 @@ const UserSchema = new Schema({
   },
   conocimientos: [{
     type: ObjectId,
-    path: 'Tag'
+    ref: 'Tag'
   }],
-
   quieroAprender: [{
     type: ObjectId,
-    path: 'Tag'
+    ref: 'Tag'
   }],
-  interests: {
-    type: String,
-    path: 'Tag'
-  }
+  interests: [{
+    type: ObjectId,
+    ref: 'Tag'
+  }]
 });
 
-// Compila el Schema en un modelo y lo exporta
 module.exports = mongoose.model('User', UserSchema);
-
