@@ -12,8 +12,7 @@ const EventSchema = new mongoose.Schema({
         required: true,
     },
     createdBy:{
-        type: ObjectId, ref: "User",
-        required:true,
+        type: String
     },
     date: {
         type: Date,
@@ -41,8 +40,7 @@ const EventSchema = new mongoose.Schema({
     },
     tags:[
         {
-            type: ObjectId,
-            ref:'Tag'
+            type: String
         }
     ],
     oficial: {

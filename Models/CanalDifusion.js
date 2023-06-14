@@ -17,8 +17,7 @@ const CanalDifSchema = new mongoose.Schema({
         ref: 'User'
     }],
     createdBy: {
-        type: ObjectId,
-        ref: 'User'
+        type: String,
     },
     oficial: {
         type: Boolean,

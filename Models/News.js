@@ -18,9 +18,7 @@ const NewsSchema = new mongoose.Schema({
         required: true,
     },
     tags:[{
-        type: ObjectId,
-            ref:'Tag',
-        required:true
+        type:String,
     }],
     oficial: {
         type: Boolean,
