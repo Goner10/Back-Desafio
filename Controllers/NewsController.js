@@ -13,7 +13,8 @@ const NewsController = {
     async getAll(req, res) {
         //ordenado por new mas reiente por el sort -1
         try {
-            const news = await News.find().sort({date: -1}).populate({ path: 'tags'});
+            const news = await News.find()
+            // .sort({date: -1}).populate({ path: 'tags'});
             res.status(201).send(news);
         } catch (error) {
             console.error(error);

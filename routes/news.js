@@ -4,7 +4,7 @@ const { authentication } = require('../middleware/authentication');
 
 const router = express.Router();
 
-router.post('/create', authentication, NewsController.create);
+router.post('/create', NewsController.create);
 router.get('/all', NewsController.getAll);
 router.get('/latest', NewsController.getLatest);
 router.get('/byId/:_id', NewsController.getById);
