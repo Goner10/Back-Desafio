@@ -1,12 +1,6 @@
 const multer = require("multer");
 const mimetypes = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 
-/*
-The following code returns storage path, unique name for each file and 
-defines limits. The exact file paths are defined by calling upload 
-function (below) and adding the subfolder for user, post, comments
-*/
-
 const upload = function (subfolder) {
   return multer({
     storage: multer.diskStorage({
