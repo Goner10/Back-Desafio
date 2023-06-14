@@ -35,9 +35,7 @@ const UserSchema = new Schema({
     required: true,
   },
   course: {
-    type: ObjectId,
-    ref: 'Course',
-    required: false,
+    type: String,
   },
   situationLaboral: {
     type: String,
@@ -67,16 +65,13 @@ const UserSchema = new Schema({
     default: true
   },
   conocimientos: [{
-    type: ObjectId,
-    ref: 'Tag'
+    type: String,
   }],
   quieroAprender: [{
-    type: ObjectId,
-    ref: 'Tag'
+    type:  String,
   }],
   interests: [{
-    type: ObjectId,
-    ref: 'Tag'
+    type: String,
   }]
 });
 

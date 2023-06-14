@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const CanalDifSchema = new mongoose.Schema({
     name: {
-        type:ObjectId,
-        ref:'Tag'
+        type:String,
+        require:true
     },
     description: {
         type: String
@@ -17,8 +17,7 @@ const CanalDifSchema = new mongoose.Schema({
         ref: 'User'
     }],
     createdBy: {
-        type: ObjectId,
-        ref: 'User'
+        type: String,
     },
     oficial: {
         type: Boolean,

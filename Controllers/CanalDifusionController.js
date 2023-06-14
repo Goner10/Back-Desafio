@@ -15,10 +15,11 @@ const canalDifusionController = {
   // Obtener todos los canales de difusión
   async getAll(req, res) {
     try {
-      const canalesDifusion = await CanalDifusion.find().populate({ path: 'name'})
-      .populate({ path: 'events'})
-      .populate({ path: 'participantes'})
-      .populate({ path: 'createdBy'});
+      const canalesDifusion = await CanalDifusion.find()
+        .populate('name')
+        .populate('events')
+        .populate('participantes')
+        .populate('createdBy');
       res.send(canalesDifusion);
     } catch (error) {
       console.error(error);
