@@ -23,6 +23,9 @@ const NewsSchema = new mongoose.Schema({
     oficial: {
         type: Boolean,
         default: false
+      },
+      createdBy:{
+        type:String
       }
 });
 
